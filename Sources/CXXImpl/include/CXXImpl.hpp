@@ -1,22 +1,39 @@
 #include <stdio.h>
+#include <simd/simd.h>
 
 #ifdef __cplusplus
-//namespace CXXImpl {
+
+#include <vector>
+
+struct Color {
+    simd_float4 repr;
+};
+
+using ColorArray = std::vector<Color>;
 
 class Life {
 public:
-    int my_life;
+    __attribute__((swift_name("life")))
+    int my_life = 0;
     
-    Life() {
-        printf("Created life\n");
-    }
+    ColorArray colors = ColorArray();
     
-    ~Life() {
-        printf("Destroyed Life\n");
+    Life();
+
+    ~Life();
+    
+    void doSomething() { }
+    
+    bool operator==(const Life& other) {
+      return my_life == other.my_life;
     }
+
 };
+
+
 
 int my_function(int a, int b);
 
-//};
+int doSomethingWithLife(const Life& life);
+
 #endif

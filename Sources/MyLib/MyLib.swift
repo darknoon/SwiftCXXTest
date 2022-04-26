@@ -1,12 +1,28 @@
 import CXXImpl
 
+extension Life: Equatable {
+    public static func == (lhs: Life, rhs: Life) -> Bool {
+        lhs.life == rhs.life
+    }
+}
+
+extension Life: Hashable {
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(life)
+    }
+}
+
 public struct CXXTest {
     
-    func run() -> Int32 {
-        var life = CXXImpl.Life()
+    public init() {}
+    
+    public func run() -> Int32 {
+        var life = Life()
+        doSomethingWithLife(&life)
         print("life", life)
-        life.my_life = 12
+        life.life = 12
+        
         print("life", life)
-        return CXXImpl.my_function(10, 2)
+        return my_function(10, 2)
     }
 }

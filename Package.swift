@@ -10,6 +10,7 @@ let package = Package(
         .library(
             name: "MyLib",
             targets: ["MyLib"]),
+        .executable(name: "MyBin", targets: ["MyBin"])
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -18,16 +19,18 @@ let package = Package(
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
-        .target(name: "CXXImpl", dependencies: [], publicHeadersPath: "include"),
+        .target(name: "CXXImpl", dependencies: []),
         .target(
             name: "MyLib",
             dependencies: ["CXXImpl"],
             swiftSettings: [.unsafeFlags([
-                "-Xfrontend", "-enable-cxx-interop"
+                "-Xfrontend", "-enable-cxx-interop",
             ])]
         ),
+        .executableTarget(name: "MyBin", dependencies: ["MyLib"]),
         .testTarget(
             name: "MyTests",
-            dependencies: ["MyLib"]),
+            dependencies: ["MyLib"]
+        )
     ]
 )
