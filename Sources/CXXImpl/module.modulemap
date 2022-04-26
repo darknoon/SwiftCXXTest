@@ -1,0 +1,5 @@
+module CXXImpl {
+    //note that your header should be the file that contains your method implementations
+    header "include/CXXImpl.hpp"
+    requires cplusplus
+}

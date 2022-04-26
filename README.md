@@ -1,3 +1,3 @@
 # CXXTest
 
-A description of this package.
+Example of how to use -enable-cxx-interop
